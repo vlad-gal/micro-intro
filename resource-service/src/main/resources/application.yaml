@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/resource-db
+    username: ${RESOURCE_DB_USERNAME}
+    password: ${RESOURCE_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+song:
+  host:
+    url: http://localhost:8081/songs
