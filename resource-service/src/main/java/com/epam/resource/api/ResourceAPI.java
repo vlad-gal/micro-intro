@@ -3,7 +3,6 @@ package com.epam.resource.api;
 import com.epam.resource.dto.ResponseResourceDTO;
 import com.epam.resource.dto.ResponseResourcesDTO;
 import com.epam.resource.service.resource.ResourceService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +32,7 @@ public class ResourceAPI {
   }
 
   @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<ResponseResourcesDTO> deleteByIds(
-      @RequestParam("id") List<Long> resourceIds) {
+  public ResponseEntity<ResponseResourcesDTO> deleteByIds(@RequestParam("id") String resourceIds) {
     return resourceService.deleteByIds(resourceIds);
   }
 }
