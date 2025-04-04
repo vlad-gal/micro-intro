@@ -31,7 +31,7 @@ public class ResourceAPI {
     return resourceService.findById(resourceId);
   }
 
-  @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  @DeleteMapping
   public ResponseEntity<ResponseResourcesDTO> deleteByIds(@RequestParam("id") String resourceIds) {
     return resourceService.deleteByIds(resourceIds);
   }

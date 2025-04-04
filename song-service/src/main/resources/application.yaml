@@ -1,0 +1,14 @@
+server:
+  port:  8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/song-db
+    username: ${SONG_DB_USERNAME}
+    password: ${SONG_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null
