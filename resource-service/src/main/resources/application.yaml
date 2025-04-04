@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/resource-db
-    username: ${RESOURCE_DB_USERNAME}
-    password: ${RESOURCE_DB_PASSWORD}
+    username: ${RESOURCE_DB_USERNAME:postgres}
+    password: ${RESOURCE_DB_PASSWORD:postgres}
   jpa:
     hibernate:
       ddl-auto: update

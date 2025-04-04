@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/song-db
-    username: ${SONG_DB_USERNAME}
-    password: ${SONG_DB_PASSWORD}
+    username: ${SONG_DB_USERNAME:postgres}
+    password: ${SONG_DB_PASSWORD:postgres}
   jpa:
     hibernate:
       ddl-auto: update
