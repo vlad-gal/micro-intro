@@ -27,4 +27,11 @@ public class ResourceExceptionHandler {
             HttpStatus.BAD_REQUEST.value()),
         HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler({Exception.class, RuntimeException.class})
+  public ResponseEntity<ErrorDTO> handleException(Throwable t) {
+    return new ResponseEntity<>(
+        new ErrorDTO("An error occurred on the server", HttpStatus.INTERNAL_SERVER_ERROR.value()),
+        HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }

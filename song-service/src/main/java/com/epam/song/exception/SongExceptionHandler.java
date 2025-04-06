@@ -49,4 +49,13 @@ public class SongExceptionHandler {
             .setErrorCode(HttpStatus.BAD_REQUEST.value()),
         HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler({Exception.class, RuntimeException.class})
+  public ResponseEntity<ErrorDTO> handleException(Throwable t) {
+    return new ResponseEntity<>(
+        new ErrorDTO()
+            .setErrorMessage("An error occurred on the server")
+            .setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+        HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }
