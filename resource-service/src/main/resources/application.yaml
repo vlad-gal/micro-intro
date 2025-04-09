@@ -3,16 +3,14 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/resource-db
+    url: ${RESOURCE_DB_URL:jdbc:postgresql://localhost:5432/resource-db}
     username: ${RESOURCE_DB_USERNAME:postgres}
     password: ${RESOURCE_DB_PASSWORD:postgres}
   jpa:
-    hibernate:
-      ddl-auto: update
     show-sql: true
   jackson:
     default-property-inclusion: non_null
 
 song:
   host:
-    url: http://localhost:8081/songs
+    url: http://${SONG_SERVICE_HOST:localhost}:8081/songs
