@@ -1,4 +1,5 @@
 rootProject.name = 'micro-intro'
 include 'resource-service'
 include 'song-service'
-
+include 'eureka-service'
+include 'gateway-service'

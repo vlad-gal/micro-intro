@@ -28,11 +28,14 @@ services:
       RESOURCE_DB_USERNAME: ${RESOURCE_DB_USERNAME}
       RESOURCE_DB_PASSWORD: ${RESOURCE_DB_PASSWORD}
       SONG_SERVICE_HOST: ${SONG_SERVICE_HOST}
+      EUREKA_SERVICE_HOST: ${EUREKA_SERVICE_HOST}
     ports:
-      - "8080:8080"
+      - "8081:8081"
     depends_on:
       - resource-db
       - song-service
+      - gateway-service
+      - eureka-service
 
   song-service:
     build:
@@ -42,7 +45,31 @@ services:
       SONG_DB_URL: ${SONG_DB_URL}
       SONG_DB_USERNAME: ${SONG_DB_USERNAME}
       SONG_DB_PASSWORD: ${SONG_DB_PASSWORD}
-    ports:
-      - "8081:8081"
+      EUREKA_SERVICE_HOST: ${EUREKA_SERVICE_HOST}
+      SERVER_PORT: 8082
     depends_on:
       - song-db
+      - gateway-service
+      - eureka-service
+    deploy:
+      replicas: 2
+
+  gateway-service:
+    build:
+      context: ./gateway-service
+      dockerfile: Dockerfile
+    environment:
+      EUREKA_SERVICE_HOST: ${EUREKA_SERVICE_HOST}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-service
+
+  eureka-service:
+    build:
+      context: ./eureka-service
+      dockerfile: Dockerfile
+    environment:
+      EUREKA_SERVICE_HOST: ${EUREKA_SERVICE_HOST}
+    ports:
+      - "8761:8761"

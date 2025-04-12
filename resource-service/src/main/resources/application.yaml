@@ -1,7 +1,9 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
+  application:
+    name: resource-service
   datasource:
     url: ${RESOURCE_DB_URL:jdbc:postgresql://localhost:5432/resource-db}
     username: ${RESOURCE_DB_USERNAME:postgres}
@@ -13,4 +15,9 @@ spring:
 
 song:
   host:
-    url: http://${SONG_SERVICE_HOST:localhost}:8081/songs
+    url: http://${SONG_SERVICE_HOST:localhost}:8082/songs
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_SERVICE_HOST:localhost}:8761/eureka
